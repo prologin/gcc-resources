@@ -38,6 +38,21 @@ de joueur, a au moins des regles. Les voici :
 4. Une cellue **morte** avec exactement 3 voisines vivantes, devient vivante
     (grace a la reproduction)
 
+## Tester votre programme
+
+Vous avez a votre disposition un dossier `patterns` contenant des exemples de
+configurations.  Pour lancer votre programme, vous devrez lui fournir le nombre
+de generations pendant lesquelles il doit tourner et le chemin vers la
+configuration initiale que vous voulez.
+
+Par exemple:
+```
+$ ./jeu-de-la-vie.py 130 patterns/gosper-glider-gun
+```
+
+lancera votre programme permettra d'observer l'evolution de la configuration
+gosper-glider-gun sur 130 generations.
+
 ## Explication du code donne
 
 * expliquer le she-bang
@@ -58,8 +73,8 @@ Elle possede deux methodes :
 * `set(self, status)`
 
 **Exercice 1** : ecrivez la methode `__init__(self, alive)` pour la classe Cell.
-Elle doit prendre en parametre le booleen `alive` qui represente l'etat de la cellule
-lors de sa creation, et l'assigner a l'attribut de la cellule `alive`.
+Elle doit prendre en parametre le booleen `alive` qui represente l'etat de la
+cellule lors de sa creation, et l'assigner a l'attribut de la cellule `alive`.
 Elle doit egalement assigner un caractere a l'attribut `char` en fonction de la
 valeur de l'attribut `alive`. Par exemple, '0' si la cellule est vivante, '.'
 sinon.
