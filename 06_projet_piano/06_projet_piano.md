@@ -412,7 +412,87 @@ Note : la solution la plus simple serait d'utiliser la méthode spéciale _\_\_l
 
 ### Les dictionnaires
 
-Explications et petits exos/fonctions auxiliaires à écrire sur les dictionnaires.
+Un dictionnaire Python est une structure de données qui permet de stocker une
+association clef/valeur.
+
+Imaginons que l'on veuille stocker les prix des légumes d'une épicerie : on
+pourrait stocker tous les prix dans une liste mais il faudrait se souvenir à
+chaque fois quel indice correspond à quel fruit.
+
+L'idéal serait d'avoir directement les noms des fruits comme "indice", cela
+tombe bien, c'est exactement ce que nous permettent les dictionnaires :
+
+```python
+prix_epicerie = {"potiron": 3.7, "salade": 1.5}
+```
+
+Nous venons de créer le dictionnaire python `prix_epicerie`.
+
+Maintenant, imaginons qu'on veuille récupérer le prix du potiron et l'afficher :
+
+```python
+print(prix_epicerie["potiron"])
+# affiche 3.7
+```
+
+Cette façon est la façon la plus simple de récupérer la **valeur** (le prix)
+associée à la **clef** (le légume), mais il faut être sûr que la **clef** (nom
+du légume) a bien une **valeur** (un prix) associé.
+
+Par exemple, si j'écris :
+
+```python
+print(prix_epicerie["courgette"])
+# ERREUR
+```
+
+Python me renvoie une erreur car la clef `courgette` n'a pas de valeur associée.
+
+Un moyen simple de vérifier si une clef existe dans un dictionnaire :
+
+```python
+if prix_epicerie.get("courgette") != None:
+    print("Les courgettes sont dispo à l'épicerie")
+    # ici on est sûrs qu'on peut récupérer le prix de la courgette puisqu'elle
+    # existe
+    print("Prix de la courgette", prix_epicerie.get("courgette"))
+else:
+    print("Désolé, nous n'avons pas de courgette en stock")
+```
+
+Explication:
+
+La fonction `get` est une **méthode** disponible sur les dictionnaires et
+renvoie la valeur associée à la clef donnée en argument ou `None` si la clef
+n'existe pas dans le dictionnaire.
+
+*Astuce: dans la condition ci-dessus, on aurait pu omettre le `!= None` car dans
+les `if` un `None` est équivalent à un `False`.*
+
+
+
+Continuons avec notre exemple de l'épicerie : on voudrait pouvoir ajouter les
+prix de nouveaux légumes disponibles à l'épicerie :
+
+
+```python
+# j'ajoute le prix de la carotte au dictionnaire prix_epicerie
+prix_epicerie["carotte"] = 3.5
+```
+
+S'il existe une déjà une valeur pour carotte elle sera modifiée, sinon elle sera
+créée.
+
+Même chose pour modifier une valeur déjà existante :
+
+```python
+prix_epicerie["potiron"] = 7.70
+# modifie la valeur associée à la clef potiron
+```
+
+*Si quelque chose n'est pas clair, ne pas hésiter à poser une question à un(e)
+organisatrice/eur elles/ils sont là pour vous aider.*
+
 
 ## Utiliser vos connaissances
 
