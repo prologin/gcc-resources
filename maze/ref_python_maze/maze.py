@@ -7,6 +7,7 @@ class Cell:
     right = True
     start = False
     end = False
+    is_path = False
 
     def __init__(self, start=False, end=False):
         self.start = start
@@ -37,7 +38,44 @@ class Maze:
         self.maze[end[0]][end[1]].end = True
 
     def pretty_print(self):
-        pass
+        stars = "=="
+        for i in range(self.size):
+            stars += "======"
+
+        res = stars + "\n"
+        for i in range(self.size):
+            first_line = "||"
+            third_line = "=="
+            for j in range(self.size):
+                if self.maze[i][j].start:
+                    first_line += "SSSS"
+                elif self.maze[i][j].end:
+                    first_line += "EEEE"
+                elif self.maze[i][j].is_path:
+                    first_line += "PPPP"
+                else:
+                    first_line += "    "
+
+                if self.maze[i][j].right:
+                    first_line += "||"
+                elif self.maze[i][j].is_path and self.maze[i][j + 1].is_path:
+                    first_line += "PP"
+                else:
+                    first_line += "  "
+
+                if self.maze[i][j].down:
+                    third_line += "======"
+                elif self.maze[i][j].is_path and self.maze[i + 1][j].is_path:
+                    third_line += "PPPP"
+                else:
+                    third_line += "    "
+                    third_line += "=="
+
+            first_line += "\n"
+            third_line += "\n"
+            res += first_line + first_line + third_line
+
+        return res
 
     def carve_path(self, i, j, direction):
         if direction == Direction.NORTH:

@@ -1,5 +1,5 @@
 from maze import *
-from random import random
+from random import *
 
 
 def init_marked(size):
@@ -31,18 +31,18 @@ def mark_cell(marked, frontier, i, j, size):
 
 def find_neighbours(marked, i, j, size):
     neighbours = []
-    if i-1 >= 0 and marked[i-1, j]:
+    if i-1 >= 0 and marked[i-1][j]:
         neighbours.append(Direction.NORTH)
-    if i+1 < size and marked[i+1, j]:
+    if i+1 < size and marked[i+1][j]:
         neighbours.append(Direction.SOUTH)
-    if j-1 >= 0 and marked[i, j-1]:
+    if j-1 >= 0 and marked[i][j-1]:
         neighbours.append(Direction.WEST)
-    if j+1 < size and marked[i, j+1]:
+    if j+1 < size and marked[i][j+1]:
         neighbours.append(Direction.EAST)
 
     if len(neighbours) == 0:
         return Direction.NULLDIR
-    rand_index = random.randrange(len(neighbours))
+    rand_index = randint(0, len(neighbours) - 1)
     return neighbours[rand_index]
 
 
@@ -51,16 +51,16 @@ def generate_prim_maze(size, start, end):
     marked = init_marked(size)
     frontier = []
 
-    i = random.randrange(size)
-    j = random.randrange(size)
+    i = randint(0, size - 1)
+    j = randint(0, size - 1)
     mark_cell(marked, frontier, i, j, size)
 
     while len(frontier) != 0:
-        choose_cell = random.randrange(len(frontier))
-        index = frontier[choose_cell]
-        frontier.pop(index)
-        carve_dir = find_neighbours(marked, index[0], index[1], size)
-        res_maze.carve_path(carve_dir)
-        mark_cell(marked, frontier, index[0], index[1])
+        choose_cell = randint(0, len(frontier) - 1)
+        i, j = frontier[choose_cell]
+        frontier.pop(choose_cell)
+        carve_dir = find_neighbours(marked, i, j, size)
+        res_maze.carve_path(i, j, carve_dir)
+        mark_cell(marked, frontier, i, j, size)
 
     return res_maze

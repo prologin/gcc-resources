@@ -1,4 +1,4 @@
-from random import random
+from random import *
 from maze import *
 
 
@@ -13,10 +13,10 @@ def get_directions(i, j):
 
 def generate_binary_maze(size, start, end):
     res_maze = Maze(size, start, end)
-    for i in range(size, 0, -1):
-        for j in range(size, 0, -1):
+    for i in range(size - 1, -1, -1):
+        for j in range(size - 1, -1, -1):
             all_dir = get_directions(i, j)
             if len(all_dir) != 0:
-                index = random.randrange(len(all_dir))
-                res_maze.carve_path(i, j, index)
+                index = randint(0, len(all_dir) - 1)
+                res_maze.carve_path(i, j, all_dir[index])
     return res_maze
