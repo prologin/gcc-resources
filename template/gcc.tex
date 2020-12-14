@@ -9,6 +9,7 @@
 \usepackage[breaklinks=true]{hyperref}
 \usepackage[french]{babel}
 \usepackage[most]{tcolorbox}
+\usepackage{accsupp}
 \usepackage{amsmath}
 \usepackage{array}
 \usepackage{booktabs}
@@ -84,6 +85,13 @@
 \cfoot{\thepage}
 \fancyfoot[L]{\includegraphics[width=2cm]{../logo_gcc_court.pdf}}
 \fancyfoot[R]{\includegraphics[width=1.2cm]{../prologin_cube_bw.pdf}}
+
+% No copy linenos : https://tex.stackexchange.com/questions/83204/how-can-i-make-source-code-included-with-minted-copyable
+
+\newcommand\emptyaccsupp[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
+
+\let\theHFancyVerbLine\theFancyVerbLine % don't apply our patch to hyperref's version
+\def\theFancyVerbLine{\rmfamily\tiny\emptyaccsupp{\arabic{FancyVerbLine}}}
 
 % Custom color environments
 \definecolor{grey}{RGB}{240, 240, 240}

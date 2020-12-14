@@ -19,6 +19,6 @@ figures:
 
 .PHONY: clean
 clean:
-	latexmk -C ${SUBJECT}.tex
+	latexmk -C ${SUBJECT}.tex -f
 	${RM} ${SUBJECT}.tex
 	${RM} -rf _minted-${SUBJECT}

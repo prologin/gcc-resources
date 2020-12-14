@@ -5,4 +5,5 @@ all: 05_projet_jeu.pdf
 	mv old_template.pdf 05_projet_jeu.pdf
 
 clean:
-	latexmk -C
+	latexmk -C -f
+	rm -rf _minted-old_template

@@ -15,6 +15,6 @@ all: $(SUBJECTS:=.pdf) $(SUBJECTS:=.tex)
 
 .PHONY: clean
 clean:
-	latexmk -C ${SUBJECTS:=.tex}
+	latexmk -C ${SUBJECTS:=.tex} -f
 	${RM} ${SUBJECTS:=.tex}
 	${RM} -rf ${SUBJECTS:%=_minted-%}
