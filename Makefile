@@ -6,6 +6,7 @@ TARGETS = \
 	02_listes_et_string.pdf \
 	03_reseau.pdf \
 	04_objet.pdf \
+	04_matrices.pdf \
 	04_web.pdf \
 	04_web_boni.pdf \
 	05_projet_jeu.pdf \
