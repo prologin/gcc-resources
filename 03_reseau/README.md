@@ -15,5 +15,5 @@ Python 3 (par opposition au Python 2), puis, que l'un des organisateurs sur
 le réseau local lance tous les scripts `serveurs` dans le dossier `tp`. Les
 exercices utilisent différents ports, c'est pour ça qu'il est nécessaire de
 tous les lancer séparément et simultanément. Le dossier `tp` contient également
-les `clients` pour les exercices, qui correspondent à une solution possible aux
+les `refs` pour les exercices, qui correspondent à une solution possible aux
 exercices.

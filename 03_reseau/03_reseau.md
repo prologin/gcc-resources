@@ -175,13 +175,16 @@ Adaptez votre programme pour qu'il affiche indéfiniment chaque ligne de texte
 envoyée par le serveur. On peut faire Ctrl+C pour quitter le programme (pratique
 si vous n'avez pas le temps d'attendre indéfiniment !)
 
-**NB**: conservez ce programme dans un fichier appelé client_reception.py.
+**NB**: conservez ce programme dans un fichier appelé `client_reception.py`.
 
 #### Exercice 3
 
 Est-il possible de modifier le programme pour qu'il se termine lorsque le
 serveur a fini d'envoyer les données ? Essayez en vous connectant sur la même
 adresse, mais au port 2001. Ce serveur envoie un nombre aléatoire de messages.
+
+**NB**: lisez les messages de façon ininterrompue jusqu'à ce qu'un message soit 
+vide ou contienne seulement un retour de ligne.
 
 # Écriture sur une socket
 

@@ -11,11 +11,12 @@ LINES = ('antepenult', 'rattlingness', 'pointillist', 'zinco', 'diplohedron',
         'predisponent', 'wastingly', 'unactive')
 
 
-@asyncio.coroutine
-def _handle_client(client_reader, client_writer):
+async def _handle_client(client_reader, client_writer):
     client_writer.write(bytes(HEADER + '\n', encoding='utf-8'))
     for l in [choice(LINES) for _ in range(randint(2, len(LINES)))]:
         client_writer.write(bytes(l + "\n", encoding='utf-8'))
+    client_writer.write(bytes('\n', encoding='utf-8'))
+
 
 def main(port=2001):
     loop = asyncio.get_event_loop()
@@ -30,6 +31,7 @@ def main(port=2001):
     server.close()
     loop.run_until_complete(server.wait_closed())
     loop.close()
+
 
 if __name__ == '__main__':
     main()
