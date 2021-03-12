@@ -3,47 +3,69 @@ title: Découverte de Python
 date: 2020
 ---
 
+# Introduction à la programmation
 
-Alice se réjouit du tournoi de sport qui s'organise en ce moment.  Seulement,
-Alice déteste une chose : compter les points. Alice décide donc qu'elle va
-apprendre à se servir du langage informatique Python, pour que son ordinateur
-garde le compte à sa place.
+Tous les ordinateurs ne sont rien d'autres que des composants électroniques qui
+exécutent des instructions. Lorsque tu ouvres un navigateur internet, ton
+ordinateur exécute les instructions du logiciel utilisé, qu'on appelle aussi
+**programme**. Le but de cet atelier est de te faire découvrir comment nous
+pouvons créer nos propres programmes, et pour cela il nous faut un moyen
+d'écrire ces instructions : un **langage de programmation**.
 
-Ce TP va suivre sa progression. Il y aura beaucoup d'exemples et il ne faut pas
-hésiter à les tester soi-même ! Faire des sauvegardes régulières et créer
-plusieurs fichiers distincts sont aussi de bonnes habitudes à avoir !
+Il existe énormément de langage de programmation, tout comme il existe des
+milliers de langue dans le monde ! Certains sont plus connus que d'autres et
+nous allons te faire découvrir Python, un langage facile à prendre en main mais
+très puissant.
 
-# Afficher le score dans le terminal
+# Notre premier programme
 
-En premier, elle apprend que si elle écrit un programme `score.py`, il ne
-s'exécute que si elle rentre la commande `python3 score.py` dans le terminal
-depuis le dossier où se trouve son fichier `score.py`.
+Un programme en Python est constitué d'une série d'instruction à exécuter par
+un ordinateur. Chaque instruction doit être écrite sur une nouvelle ligne, et
+le programme sera lu par l'ordinateur de haut en bas.
+
+## Afficher des trucs
+
+Commençons par écrire un premier programme `bienvenue.py` :
+
+```python
+print('Bienvenue au stage Girls Can Code!')
+```
+
+Pour lancer le programme, tape `python3 bienvenue.py` dans ton terminal
+depuis le dossier où se trouve le fichier `bienvenue.py`.
 
 Au passage, l'extension `.py` sert à préciser à l'ordinateur que ce qui est
-écrit dans le fichier est écrit dans le langage python, ce qui peut permettre à
-certains éditeurs de colorer les mots clefs de Python.
+écrit dans le fichier est écrit dans le langage python, ce qui peut permettre
+à certains éditeurs de colorer les mots clefs de Python.
 
-Ensuite elle veut voir si elle peut afficher un texte ou un nombre en sortie
-dans le terminal. Elle découvre qu'il existe une fonction `print` qui peut lui
-permettre d'afficher plein de choses dans le terminal quand elle exécute le
-programme.
+En lançant le programme, tu devrais obtenir :
 
-Contenu du fichier `score.py` :
-
-``` {.python}
-print("Bonjour !")
+```text
+Bienvenue au stage Girls Can Code!
 ```
 
-Résultat à l'exécution dans la console :
+Tu auras donc compris que l'instruction `print` te permet d'afficher des
+choses, tu vas certainement t'en servir tout au long de ce TP (et
+probablement bien plus).
 
-``` {.text}
-Bonjour !
+Comme nous te l'expliquions plus tôt, tu peux enchaîner les instructions en retournant à la ligne :
+
+```python
+print('Bienvenue')
+print('au stage')
+print('Girls Can Code!')
 ```
 
-Elle remarque ensuite qu'en écrivant plusieurs lignes à la suite, elles
-s'affichent dans le même ordre dans le terminal. Et elle apprend également que
-si elle commence une ligne par un `#` la ligne n'est pas prise en compte. On
-s'en sert généralement pour laisser des commentaires dans son code :
+Cette fois-ci, en lançant le programme tu verras :
+
+```text
+Bienvenue
+au stage
+Girls Can Code!
+```
+
+Tu as aussi la possibilité d'ajouter des commentaires en commençant une ligne
+par un `#`. Une ligne commençant par un `#` n'est pas lue par Python.
 
 ``` {.python}
 print("Bonjour,")
@@ -57,10 +79,12 @@ Bonjour,
 Bienvenue au stage informatique GCC! !
 ```
 
-Mais à un moment, elle découvre que si elle oublie certains éléments, le
-programme ne fonctionne plus. Par exemple, si elle oublie de fermer une
-parenthèse, de fermer des guillemets ou si elle oublie complètement les
-guillemets, elle peut obtenir toutes ces erreurs :
+## Ne pas avoir peur des erreurs
+
+Tu t'en rendras compte bien assez tôt, lorsque tu oublies certains éléments,
+le programme ne fonctionne plus. Par exemple, si tu oublies de fermer une
+parenthèse, de fermer des guillemets ou autre, vous pourrez obtenir des
+erreurs qui ressemblent à ça :
 
 Il manque une parenthèse :
 
@@ -112,7 +136,7 @@ print(Score :)
 SyntaxError: invalid syntax
 ```
 
-Les erreurs apparaissent lorsqu'on a fait une faute en écrivant notre programme.
+Les erreurs apparaissent lorsque l'on fait une faute en écrivant notre programme.
 Il est important d'apprendre à les comprendre pour trouver les fautes et les
 corriger. Notamment quand il y a une erreur, il y a toujours une ligne précisée,
 ce qui peut te donner une idée d'où se trouve la faute.
@@ -123,30 +147,34 @@ Essaie de créer un fichier `score.py` qui, quand on le lance dans la console,
 affiche :
 
 ``` {.text}
-Le score est de 3 contre 1 !
+Je suis vraiment trop contente de faire du Python !
 ```
 
-# Garder le score en mémoire
+# Enregistrer des informations
 
-Maintenant, Alice se dit qu'elle sera capable d'afficher les scores par écrit
-dans un terminal, mais elle ne veut toujours pas avoir à compter les points\...
+## Parler au programme
 
-Alice apprend alors qu'il existe une commande, `input`, qui permet d'attendre et
-de récupérer des informations depuis le terminal.  `input()` bloque l'exécution
-du programme jusqu'à ce que l'utilisateur écrive quelque chose dans le terminal
-et appuie sur la touche *entrée*.  Donc par exemple, si tu fais un programme
-avec juste `input()` et que tu exécutes ton programme, un terminal s'ouvre. Tu
-peux alors écrire ce que tu veux, et il ne se passera rien tant que tu
-n'appuieras pas sur la touche *entrée*.
+Vous avez appris à afficher des informations depuis votre programme avec
+`print`. Il existe une commande qui permet de récupérer des informations
+depuis le terminal : `input`. `input()` bloque l'exécution du programme
+jusqu'à ce que l'utilisateur écrive quelque chose dans le terminal et appuie
+sur la touche *entrée*. Donc par exemple, si tu fais un programme avec juste
+`input()` et que tu exécutes ton programme, un terminal s'ouvre. Tu peux
+alors écrire ce que tu veux, et il ne se passera rien tant que tu n'appuieras
+pas sur la touche *entrée*.
 
-Seulement, si on écrit juste :
+Testes le code ci-dessous :
 
 ``` {.python}
-input()
+print(input())
 ```
 
-On perd instantanément ce que l'utilisateur a écrit, car on n'a pas fait en
-sorte de le sauvegarder ! Pour le sauvegarder on peut par exemple écrire :
+Comme tu peux le voir, le programme attend que tu écrives quelque chose puis affiche ce que tu as écris.
+
+## Sauvegarder l'entrée
+
+Tu sais maintenant comment lire du texte depuis ton programme, mais tu
+aimerais bien pouvoir faire autre chose que l'afficher. Pour cela, tu as besoin de stocker ton information dans ce que l'on appelle une *variable*.
 
 ``` {.python}
 entree = input()
@@ -154,99 +182,89 @@ entree = input()
 
 Ici, grâce au `=`, on écrit qu'on sauvegarde le résultat de `input()` dans la
 *variable* `entree`. Cela nous permettra d'avoir accès autant qu'on veut à ce
-que l'utilisateur a écrit. Par exemple, on peut afficher les variables, et donc
-écrire un programme qui recopie ce que l'utilisateur lui donne :
+que l'utilisateur a écrit. Par exemple, on peut afficher les variables, et
+donc réécrire notre programme qui recopie ce que l'utilisateur lui donne :
 
 ``` {.python}
 entree = input()
 print(entree)
 ```
 
-Alice s'est débrouillée pour n'avoir que les points d'une équipe à compter. Pour
-compter les points, elle va avoir besoin de variables (par exemple `score` et
-`points_marques`) qui sont des entiers, qu'elle pourra sommer, soustraire,
-multiplier ou encore diviser. Par exemple, si elle lance le programme suivant,
-elle obtient :
+# Les entiers
+
+Lorsque tu utilises la fonction `input` et que tu enregistres l'information,
+ta variable est considérée comme une *chaîne de caractères* (*str* en
+Python).
+
+Si tu exécutes le programme suivant, ta variable `age` sera donc une *chaîne
+de caractères* et non pas un nombre *entier* (*int* en Python) comme tu
+aurais pu le penser !
 
 ``` {.python}
-score = 1
-points_marques = 2
-score_total = score + points_marques
-print(score_total)
+age = input()
+```
+
+Lorsque que tu l'affiches avec `print` cela ne change rien mais admettons que
+tu veuilles effectuer des opérations (addition, soustraction, multiplication,
+division, etc.) tu risques d'avoir une erreur !
+
+``` {.python}
+age = input()
+print(age + 10)
 ```
 
 ``` {.text}
-3
+TypeError: can only concatenate str (not "int") to str
 ```
 
-Plus précisément, elle veut écrire un programme qui attend de l'utilisateur (on
-dit aussi qui prend en entrée) le nombre de points qu'a l'équipe en ce moment,
-puis prend en entrée le nombre de points marqués, et ensuite affiche dans le
-terminal (on dit aussi qu'il écrit en sortie) le nouveau total.
-
-Pour cela, son programme va devoir récupérer des entiers. Une façon de le faire
-est à l'aide de la fonction `int`. Cette fonction permet de convertir ce que
-l'on récupère, c'est-à-dire des chaînes de caractères, en des entiers. Mais ça
-ne marche pas si la chaîne n'est pas un entier :
+Pour résoudre ce problème, tu peux utiliser `int()` qui permet de convertir
+une variable en entier. Attention toutefois, ta variable doit pouvoir être
+convertie.
 
 ``` {.python}
-print(int("4") + 1)
+age = int("15")
+print(age + 10)
 ```
 
 ``` {.text}
-5
+25
 ```
 
+Ce code convertis la *chaîne de caractères* `"15"` en entier `15` avec lequel
+on peut désormais faire des calculs.
+
 ``` {.python}
-int("a")
+age = int("K")
+print(age + 10)
 ```
 
 ``` {.text}
-ValueError: invalid literal for int() with base 10: 'a'
+ValueError: invalid literal for int() with base 10: 'K'
 ```
 
-Pour récupérer un entier, tu peux donc écrire l'instruction ci-dessous ; mais si
-tu ne donnes pas un entier quand tu exécutes le programme, tu auras une erreur :
-
-``` {.python}
-nombre = int(input())
-```
+En revanche, ce code-ci ne fonctionne pas car `"K"` ne peut pas être transformée en entier.
 
 #### Exercice 2
 
-Tu peux maintenant écrire le programme qui récupère le total des points de
-l'équipe et les points qu'elle a marqués, et affiche le nouveau total.
+Tu peux maintenant écrire le programme qui calcule l'âge que tu auras dans trois ans.
 
-Par exemple si je lance le programme, que j'écris `5` puis `2`, le programme
-devra écrire `7`, car $5 + 2 = 7$. Mon terminal ressemblera alors à :
-
-``` {.text}
-5
-2
-7
-```
-
-Alice se dit qu'elle aimerait bien avoir une présentation un peu plus jolie.
-Elle voudrait que ce qui s'affiche dans le terminal soit au final :
+Par exemple si je lance le programme, que j'écris `21`. le programme devra
+écrire `24`, car $21 + 3 = 24$. Mon terminal ressemblera alors à :
 
 ``` {.text}
-Le score est ?
-5
-Le nombre de points marqués est ?
-2
-Alors le score est :
-7
+21
+24
 ```
 
-`Astuce :` Si tu as stocké le score dans la variable `score` qui vaut par
-exemple 3, tu peux aussi faire :
+`Astuce :` Si tu as stocké ton âge dans la variable `age` qui vaut par
+exemple 15, tu peux aussi faire :
 
 ``` {.python}
-print("Le score est", score)
+print("Tu as", age, "ans")
 ```
 
 ``` {.text}
-Le score est 3
+Tu as 15 ans
 ```
 
 Essaie toi aussi de faire une jolie présentation !
