@@ -1,0 +1,102 @@
+==============
+|pygame-music|
+==============
+
+Introduction:
+-------------
+
+The goal of this project is to emulate a one-octave piano keyboard with our
+computer keyboard.
+
+We will also display the keyboard on screen and show pressed keys while the
+user is playing.
+
+In order to do that, we capture user keypresses and play notes using
+`pygame.mdi` and update our display using `pygame.display`.
+
+Setup:
+------
+
+To be able to use this project one must have a working MIDI playing
+configuration.
+
+On archlinux, this can be achieved by completing the following steps:
+
+`pygame.midi` uses TiMidity++ as a backend to play MIDI notes on Linux so we
+have to install and configure TiMidity++.
+
+Install TiMidity++:
+
+    # pacman -S timidity++
+
+For TiMidity++ to work, you need to install a sound font as well to render
+MIDI notes.
+
+In this example we will install a well known sound font called Fluidr3:
+
+    # pacman -S soundfont-fluid
+
+To be able to acces TiMidity++ as a normal user you will have to add your
+user to the audio group:
+
+    # gpasswd -a <user> audio
+
+For this to be taken into account, log out and log back in.
+
+The final step before launching TiMidity++ is telling it to use the soundfont
+we just installed. In order to do this add it to TiMidity++'s configuration
+file.
+
+    # echo 'soundfont /usr/share/soundfonts/FluidR3_GM.sf2' >> /etc/timidity++/timidity.cfg
+
+If you installed another sound font you should obviously change the path
+written in the configuration file so it matches the path to your sound font.
+
+Once this is done, you can either start/enable the timidity.service `systemd`
+service of launch TiMidity++ as a user.
+
+If you want to launch it as a one-shot test you can start TiMidity++ like this:
+
+    $ timidity -iA
+
+For a more permanent/no-action setup, create a user `systemd` service by
+creating a file called `timidity.service` with the following contents in
+`~/.config/systemd/user/`:
+
+    [Unit]
+    Description=TiMidity++ Daemon
+    After=sound.target
+    
+    [Service]
+    ExecStart=/usr/bin/timidity -iA -Os
+    
+    [Install]
+    WantedBy=default.target
+
+Once, that is done, you can finish TiMidity++'s setup by using:
+
+    $ systemctl --user enable --now timidity.service
+
+Finally, install `pygame` from the `requirements.txt` file:
+
+    $ pip3 install -r requirements.txt
+
+You might have to have superuser permissions to run the previous command.
+
+Usage:
+------
+
+Usage: music.py [MIDI_DEVICE]
+
+If you specify a MIDI device on the command-line, it will be used as the MIDI
+output device port to send our lovely music to.
+
+If not, a list of MIDI device ports as well as informartion about each one of
+them will de given and the user will be prompted for a choice.
+
+Default mapping:
+----------------
+
+The defaut mapping is set for a qwerty keymap. Annotations have be left for
+azerty keymaps users in the source code and it should be relatively easy to
+setup another keymap if needed.

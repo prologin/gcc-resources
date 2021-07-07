@@ -14,6 +14,8 @@ def _send_all(msg):
 def _handle_rclient(client_reader, client_writer):
     nickname = yield from client_reader.readline()
     nickname = nickname.decode('utf-8').strip()
+    if not nickname or not nickname.strip():
+        return
     yield from _send_all('*** {} a rejoint la discussion'.format(nickname))
 
     while True:
@@ -21,6 +23,8 @@ def _handle_rclient(client_reader, client_writer):
         msg = msg.decode('utf-8')
         if not msg or msg[:5] == '/quit':
             break
+        if not msg.strip():
+            continue
         yield from _send_all('<{}> {}'.format(nickname, msg.strip()))
 
     yield from _send_all('*** {} a quitté la discussion'.format(nickname))
