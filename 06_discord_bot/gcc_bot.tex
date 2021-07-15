@@ -1,0 +1,114 @@
+%!TEX TS-program = xelatex
+\documentclass[a4paper,french,11pt]{article}
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+
+% XeTex related packages
+\usepackage{fontspec,xltxtra,xunicode}
+
+\usepackage[breaklinks=true]{hyperref}
+\usepackage[french]{babel}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{fancyhdr}
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{mdframed}
+\usepackage{minted}
+\usepackage{titlesec}
+\usepackage{titling}
+
+\usepackage{float}
+
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+% -- Pandoc latex config: https://gist.github.com/1017790
+% Paragraph format (European style)
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+% Lists formatting
+% -- Redefine labelwidth for lists; otherwise, the enumerate package will cause
+% -- markers to extend beyond the left margin.
+\makeatletter\AtBeginDocument{%
+  \renewcommand{\@listi}
+    {\setlength{\labelwidth}{4em}}
+}\makeatother
+\usepackage{enumerate}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+% Table formatting
+% -- This is needed because raggedright in table elements redefines \\:
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\let\PBS=\PreserveBackslash
+
+% Subscripts
+\newcommand{\textsubscr}[1]{\ensuremath{_{\scriptsize\textrm{#1}}}}
+
+% Web-style links
+\hypersetup{colorlinks,%
+citecolor=blue,%
+filecolor=blue,%
+linkcolor=blue,%
+urlcolor=blue}
+
+% -- Custom GCC related config
+% Reduce minted space
+\setlength\partopsep{-\topsep}
+\addtolength\partopsep{-\parskip}
+\addtolength\partopsep{0.3cm}
+
+% Reduce title top margin
+\setlength{\droptitle}{-5em}
+
+% Header/footer
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{GCC! $date$}
+\lhead{$title$}
+\cfoot{\thepage}
+\fancyfoot[L]{\includegraphics[width=2cm]{../logo_gcc_court.pdf}}
+\fancyfoot[R]{\includegraphics[width=1.2cm]{../prologin_cube_bw.pdf}}
+
+% Custom color environments
+\definecolor{grey}{RGB}{240, 240, 240}
+\setminted[text]{bgcolor=grey}
+\setminted[python]{linenos=true,frame=single,framesep=4pt}
+\setminted[html]{linenos=true,frame=single,framesep=4pt}
+\setminted[css]{linenos=true,frame=single,framesep=4pt}
+\setminted[js]{linenos=true,frame=single,framesep=4pt}
+\newenvironment{exercise}{\begin{mdframed}[nobreak=true]}{\end{mdframed}}
+
+% Remove section numbering
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
+
+\title{
+    \protect\centering\protect\includegraphics[height=3cm]{../logo_gcc_long.pdf}\\
+    {$title$}
+}
+\author{GCC! \textendash{} Prologin}
+\date{$date$}
+
+\begin{document}
+
+\maketitle
+
+$body$
+
+\end{document}

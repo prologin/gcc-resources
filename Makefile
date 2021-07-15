@@ -10,6 +10,7 @@ TARGETS = \
 	04_web_boni.pdf \
 	05_projet_jeu.pdf \
 	05_projet_microbit.pdf \
+	06_discord_bot.pdf \
 	bonus_python_avance.pdf \
 	bonus_unix.pdf
 
